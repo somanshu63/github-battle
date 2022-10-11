@@ -30,7 +30,7 @@ class Score extends React.Component {
             }}
           >
             <p className={`fs-36 fw-300 text-center padding-1 ${classColor}`}>
-              {score1 > score2 ? "Winner" : "Loser"}
+              {score1 > score2 ? "Winner" : score1 === score2 ? "tie" : "Loser"}
             </p>
             <figure className="text-center">
               <img className="" src={user1.avatar_url} alt={user1.name}></img>
@@ -76,7 +76,7 @@ class Score extends React.Component {
             }}
           >
             <p className={`fs-36 fw-300 text-center padding-1 ${classColor}`}>
-              {score2 > score1 ? "Winner" : "Loser"}
+              {score2 > score1 ? "Winner" : score1 === score2 ? "tie" : "Loser"}
             </p>
             <figure className="text-center">
               <img className="" src={user2.avatar_url} alt={user2.name}></img>

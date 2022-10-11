@@ -56,6 +56,7 @@ class Popular extends React.Component {
                   this.updateCategory(category);
                   this.setState({
                     category: category,
+                    people: null,
                   });
                 }}
               >
@@ -65,58 +66,69 @@ class Popular extends React.Component {
           })}
         </div>
         <section className="flex padding-1">
-          {this.state.people
-            ? this.state.people.items.map((person, i) => {
-                return (
-                  <div
-                    key={person.name}
-                    className="width-250 people-data padding-2"
-                    style={{
-                      backgroundColor: `${backgroundColor}`,
-                    }}
+          {this.state.people ? (
+            this.state.people.items.map((person, i) => {
+              return (
+                <div
+                  key={person.name}
+                  className="width-250 people-data padding-2"
+                  style={{
+                    backgroundColor: `${backgroundColor}`,
+                  }}
+                >
+                  <p
+                    className={`fs-36 fw-300 text-center padding-1 ${classColor}`}
                   >
-                    <p
-                      className={`fs-36 fw-300 text-center padding-1 ${classColor}`}
-                    >
-                      #{i + 1}
-                    </p>
-                    <figure className="text-center">
-                      <img
-                        className=""
-                        src={person.owner.avatar_url}
-                        alt={person.name}
-                      ></img>
-                    </figure>
-                    <address
-                      className={`fs-22 fw-600 text-center text-cap red name-title `}
-                    >
-                      {person.name}
-                    </address>
-                    <address
-                      className={`padding-500 fs-20 fw-600 name ${classColor}`}
-                    >
-                      <i className="i-1 fs-22 creme fa-solid fa-user"></i>
-                      {person.name}
-                    </address>
-                    <p className={`padding-500 fs-20 ${classColor}`}>
-                      <i className="i-2 fs-22 yellow fa-solid fa-star"></i>{" "}
-                      {person.stargazers_count} stars
-                    </p>
-                    <p className={`padding-500 fs-20 ${classColor}`}>
-                      <i className="i-3 fs-22 lightBlue fa-solid fa-code-fork"></i>{" "}
-                      {person.forks} forks
-                    </p>
-                    <p className={`padding-500 fs-20 ${classColor}`}>
-                      <i className="i-4 fs-22 lightRed fa-solid fa-triangle-exclamation"></i>
-                      {person.open_issues} open issues
-                    </p>
-                  </div>
-                );
-              })
-            : ""}
+                    #{i + 1}
+                  </p>
+                  <figure className="text-center">
+                    <img
+                      className=""
+                      src={person.owner.avatar_url}
+                      alt={person.name}
+                    ></img>
+                  </figure>
+                  <address
+                    className={`fs-22 fw-600 text-center text-cap red name-title `}
+                  >
+                    {person.name}
+                  </address>
+                  <address
+                    className={`padding-500 fs-20 fw-600 name ${classColor}`}
+                  >
+                    <i className="i-1 fs-22 creme fa-solid fa-user"></i>
+                    {person.name}
+                  </address>
+                  <p className={`padding-500 fs-20 ${classColor}`}>
+                    <i className="i-2 fs-22 yellow fa-solid fa-star"></i>{" "}
+                    {person.stargazers_count} stars
+                  </p>
+                  <p className={`padding-500 fs-20 ${classColor}`}>
+                    <i className="i-3 fs-22 lightBlue fa-solid fa-code-fork"></i>{" "}
+                    {person.forks} forks
+                  </p>
+                  <p className={`padding-500 fs-20 ${classColor}`}>
+                    <i className="i-4 fs-22 lightRed fa-solid fa-triangle-exclamation"></i>
+                    {person.open_issues} open issues
+                  </p>
+                </div>
+              );
+            })
+          ) : (
+            <Loader />
+          )}
         </section>
       </div>
     );
   }
 }
+
+function Loader() {
+  return (
+    <div className="loader-cover">
+      <div class="loader"></div>
+    </div>
+  );
+}
+
 export default Popular;
